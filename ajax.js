@@ -10,18 +10,31 @@ document.getElementById('search-btn').addEventListener('click', () => {
             console.log(response)
             let output = ''
             for(let i=0; i < response.items.length; i++) {
-                output += `
-                    <div style="width: 23%; margin: 10px;">
-                    <a href="${response.items[i].volumeInfo.previewLink}" target="_blank">
- 
-                             <div >
-                                <img style="width:100% ; " src="${response.items[i].volumeInfo.imageLinks.thumbnail}" />
-                                <h4>${response.items[i].volumeInfo.title}</h4>
-                                <p>${response.items[i].volumeInfo.authors}</p>
-                            </div>
-                        </a>
-                    </div>   
-                `
+                if(response.items[i].volumeInfo.imageLinks === undefined) {
+                    output += `
+                        <div style="width: 23%; margin: 10px;">
+                        <a href="${response.items[i].volumeInfo.previewLink}" target="_blank">
+                                <div >
+                                <img style= "width = 50px"  height = "350px" src="./media/My project-2.png">
+                                    <h4>${response.items[i].volumeInfo.title}</h4>
+                                    <p>${response.items[i].volumeInfo.authors}</p>
+                                </div>
+                            </a>
+                        </div>   
+                    `
+                }  else {
+                    output += `
+                        <div style="width: 23%; margin: 10px;">
+                        <a href="${response.items[i].volumeInfo.previewLink}" target="_blank">
+                                <div >
+                                    <img style="width:100% ; " src="${response.items[i].volumeInfo.imageLinks.thumbnail}" />
+                                    <h4>${response.items[i].volumeInfo.title}</h4>
+                                    <p>${response.items[i].volumeInfo.authors}</p>
+                                </div>
+                            </a>
+                        </div>   
+                    `
+                }
             }
             document.getElementById('my-div').innerHTML = output                
         }
